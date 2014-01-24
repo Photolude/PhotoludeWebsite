@@ -1,0 +1,85 @@
+<ppl xmlns="http://localhost:13444/schema/ppl_1_0.xsd">
+	<companykey><!-- company key is obtained by ~/.ppl/ppl.properties --></companykey>
+	
+	<!-- 
+	Creating separate plug-ins so that in the future
+	portions of the full site can be deployed independently.
+	-->
+	<plugin>
+		<pluginName>Public website art package</pluginName>
+		<version>1.0.0</version>
+		<role>images</role>
+		<icon>images/windows_32.png</icon>
+		<public>false</public>
+		
+		<art>
+			<imageRoot>images/</imageRoot>
+			<image><path>BoxWithRibbons.png</path></image>
+			<image><path>calculator_72.png</path></image>
+			<image><path>favicon.ico</path></image>
+			<image><path>gear_72.png</path></image>
+			<image><path>lock_72.png</path></image>
+			<image><path>ripples.png</path></image>
+		</art>
+	</plugin>
+	<plugin>
+		<pluginName>Public Website Framework</pluginName>
+		<version>1.0.0</version>
+		<role>LayoutFramework</role>
+		<icon>images/windows_32.png</icon>
+		<public>false</public>
+
+		<pageDefinition>
+			<id>*</id>
+			
+			<script>scripts/contentBodyAdjustment.js</script>
+			
+			<html>html/template.html</html>
+			
+			<style>styles/CleanAndSleek.css</style>
+			<style>styles/desktop_1.7.css</style>
+			<style>styles/mobile_1.8.css</style>
+			<style>styles/styles_1.8.css</style>
+		</pageDefinition>
+	</plugin>
+	<plugin>
+		<pluginName>Home Content</pluginName>
+		<version>1.0.0</version>
+		<role>HomeContent</role>
+		<icon>images/windows_32.png</icon>
+		<public>false</public>
+		
+		<mainMenu>
+			<item>
+				<displayName>home</displayName>
+				<image>images/windows_32.png</image>
+				<target>home</target>
+			</item>
+		</mainMenu>
+
+		<pageDefinition>
+			<id>home</id>
+			<html>html/index.html</html>
+		</pageDefinition>
+		<pageDefinition>
+			<id>about</id>
+			<html>html/about.html</html>
+		</pageDefinition>
+		<pageDefinition>
+			<id>termsOfUse</id>
+			<html>html/termsOfUse.html</html>
+		</pageDefinition>
+	</plugin>
+	<plugin>
+		<pluginName>Login Buttons</pluginName>
+		<version>1.0.0</version>
+		<role>LoginButtons</role>
+		<icon>images/windows_32.png</icon>
+		<public>false</public>
+		
+		<pageDefinition>
+			<id>*</id>
+			<html>html/googleLogin.html</html>
+		</pageDefinition>
+	</plugin>
+</ppl>

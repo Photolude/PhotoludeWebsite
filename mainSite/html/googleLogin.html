@@ -1,0 +1,60 @@
+<div class="loginButton" supporter="loginButtons">
+	<form id="logonForm" name="logonForm" action="${initParam['platformLogon']}" method="post">
+		<div class="logon glass">
+				<span id="signinButton">
+			  	<span
+				    class="g-signin"
+				    data-callback="signinCallback"
+				    data-clientid="3913931477-47arcfijaj0qtqeim5q602aukcvrmfpt.apps.googleusercontent.com"
+				    data-cookiepolicy="single_host_origin"
+				    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+				    data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
+				  </span>
+				</span>
+				<div id="loginError" style="display:none;" class="error"></div>
+		</div>
+	</form>
+</div>
+
+<div style="display:none;">
+	<button class="g-signin"
+		data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
+		data-clientid="3913931477-47arcfijaj0qtqeim5q602aukcvrmfpt.apps.googleusercontent.com"
+		data-callback="onSignInCallback"
+		data-theme="dark"
+		data-cookiepolicy="single_host_origin"
+		data-requestvisibleactions="http://schemas.google.com/AddActivity"
+		data-width="wide"
+		supporter="indexLoginButtons">
+	</button>
+</div>
+
+<form id="googlePLoginForm" action="/logon/googleplus" method="POST">
+	<input type="hidden" id="googletoken" name="token" />
+</form>
+
+<script type="text/javascript">
+  (function() {
+   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:plusone.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+  
+  function onSignInCallback(authResult) {
+	  var loginError = $('#loginError'); 
+	  if (authResult['access_token']) {
+		  // Successfully authorized
+		  loginError.text("");
+		  loginError.hide();
+		  
+		  var code = authResult['code'];
+		  $('#signinButton').hide();
+		  $('#googletoken').val(code);
+		  $('#googlePLoginForm').submit();
+	  } else if (authResult['error'] != 'immediate_failed') {
+		  console.log('There was an error: ' + authResult['error']);
+		  loginError.text("An error occured while logging in.")
+		  loginError.show();
+	  }
+	}
+</script>
